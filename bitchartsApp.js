@@ -11,7 +11,7 @@ Author: Maxi Cañellas twitter.com/maxi_dev - maxi.canellas [at] gmail.com
 // Inicializo la APP; sin dependencias
 var bitchartsApp = angular.module("bitchartsApp", []);
 
-function calcCtrl ($scope, $http)
+function calcCtrl ($scope, $http, $filter)
 {
 
 	$http({method: 'POST', url: '/sources/sources.json'}).success(function(data)
@@ -145,8 +145,54 @@ function calcCtrl ($scope, $http)
 				}
 			}
 
-
 		} // fixSharePercent
+
+
+		$scope.shareFacebookUI = function(final_val, share_percent){
+
+			var final = final_val;
+			var  source;
+			var  percent_op;
+			$filter('currency');
+
+
+			if($scope.percent == 0){
+
+				FB.ui(
+					  {
+					    method: 'feed',
+					    name: $scope.cantidad + " BTC = " +  $filter('currency')(final_val) + " " + $scope.cur,
+					    link: 'http://bitcharts.org/',
+					    picture: 'http://bitcharts.org/img/fb10.png',
+					    caption: "Fuente: " + $scope.source + " | "  + "Dólar: " + $scope.values.geeklab["blue"],
+					    description: "Hacé tu cálculo en http://bitcharts.org"
+					  }); // FB.UI
+
+			}else{
+
+
+					if ($scope.percentOperation == "+"){
+
+					percent_op = "(más " + $scope.percent + "%)";
+
+					}else{
+
+					percent_op = "(menos " + $scope.percent + "%)";
+					}
+
+				FB.ui(
+					  {
+					    method: 'feed',
+					    name: $scope.cantidad + " BTC " + percent_op + " = " + $filter('currency')(final_val) + "" + $scope.cur,
+					    link: 'http://bitcharts.org/',
+					    picture: 'http://bitcharts.org/img/fb10.png',
+					    caption: "Fuente: " + $scope.source + " | "  + "Dólar: " + $scope.values.geeklab["blue"],
+					    description: "Hacé tu cálculo en http://bitcharts.org"
+					  }); // FB.UI
+
+			} // else
+
+		} // shareFacebookUI
 
 	});//  /success()
 
