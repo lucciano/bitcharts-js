@@ -192,7 +192,7 @@ function calcCtrl ($scope, $http, $filter)
 
 			} // else
 
-		} // shareFacebookUI
+		} // shareFacebookUI method
 
 	});//  /success()
 
