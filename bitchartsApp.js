@@ -148,7 +148,7 @@ function calcCtrl ($scope, $http, $filter)
 		} // fixSharePercent
 
 
-		$scope.shareFacebookUI = function(final_val, share_percent){
+		$scope.shareFacebookUI = function(final_val){
 
 			var final = final_val;
 			var  source;
@@ -169,7 +169,6 @@ function calcCtrl ($scope, $http, $filter)
 					  }); // FB.UI
 
 			}else{
-
 
 					if ($scope.percentOperation == "+"){
 
@@ -192,7 +191,7 @@ function calcCtrl ($scope, $http, $filter)
 
 			} // else
 
-		} // shareFacebookUI method
+		} // shareFacebookUI
 
 	});//  /success()
 
